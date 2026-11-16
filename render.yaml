@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: fintech-wallet-pleno
+    runtime: docker
+    plan: free
+    healthCheckPath: /up
+    envVars:
+      - key: APP_NAME
+        value: "Fintech Wallet"
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        generateValue: true
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_URL
+        fromDatabase:
+          name: fintech-wallet-db
+          property: connectionString
+      - key: CACHE_STORE
+        value: database
+      - key: SESSION_DRIVER
+        value: database
+      - key: LOG_CHANNEL
+        value: stderr
+
+databases:
+  - name: fintech-wallet-db
+    plan: free
