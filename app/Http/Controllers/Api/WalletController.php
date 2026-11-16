@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DepositRequest;
+use App\Http\Requests\TransactionsFilterRequest;
 use App\Http\Requests\WithdrawRequest;
 use App\Services\WalletService;
 use DomainException;
@@ -67,14 +68,16 @@ class WalletController extends Controller
         }
     }
 
-    public function transactions(Request $request): JsonResponse
+    public function transactions(TransactionsFilterRequest $request): JsonResponse
     {
+        $validated = $request->validated();
+
         $paginado = $this->walletService->getTransactionsHistory(
             user: $request->user(),
-            type: $request->query('type'),
-            startDate: $request->query('start_date'),
-            endDate: $request->query('end_date'),
-            perPage: (int) $request->query('per_page', 10),
+            type: $validated['type'] ?? null,
+            startDate: $validated['start_date'] ?? null,
+            endDate: $validated['end_date'] ?? null,
+            perPage: (int) ($validated['per_page'] ?? 10),
         );
 
         return response()->json($paginado);
