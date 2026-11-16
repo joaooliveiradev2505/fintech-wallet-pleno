@@ -98,6 +98,14 @@ php artisan test
 
 ---
 
+## ☁️ Deploy (Render / Docker)
+
+O repositório já inclui `Dockerfile`, `docker/start.sh` e `render.yaml` prontos para deploy:
+- **Render (Blueprint):** conecte o repositório em **New → Blueprint**; o `render.yaml` provisiona o serviço Web Docker e o banco PostgreSQL, executando `php artisan migrate --force` e `php artisan db:seed --force` na inicialização.
+- **Railway / Fly.io:** compatível via `Dockerfile` (extensões `pdo_mysql` e `pdo_pgsql` instaladas).
+
+---
+
 ## 📡 Endpoints da API RESTful
 
 | Método | Rota | Autenticação | Descrição |
