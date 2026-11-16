@@ -7,7 +7,7 @@ MVP de carteira digital pessoal desenvolvida com **Laravel 11**, **Laravel Sanct
 ## 🔗 Links do Projeto
 
 - **Repositório GitHub:** https://github.com/joaooliveiradev2505/fintech-wallet-pleno
-- **Deploy Público:** *(URL será adicionada após publicação)*
+- **Deploy Público:** https://fintech-wallet-pleno.onrender.com
 
 ---
 
